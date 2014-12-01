@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
+apply plugin: 'eclipse'
+
+group = 'br.com.project'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+eclipse {
+	wtp {
+		facet {
+			facet name: 'java', version: '1.6'
+			facet name: 'jst.web', version: '3.0'
+		}
+	}
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+     maven { url "http://repository.springsource.com/maven/bundles/release/" }
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+ext {
+	springVersion="4.1.2.RELEASE"
+	springSecurityVersion="3.2.4.RELEASE"
+	hibernateVersion="4.3.6.Final"
+}
+
+dependencies {
+    compile "javax.servlet:javax.servlet-api:3.1.0"
+    compile "javax.servlet:jstl:1.2"
+	
+	compile "org.springframework:spring-core:$springVersion"
+	compile "org.springframework:spring-web:$springVersion"
+	compile "org.springframework:spring-webmvc:$springVersion"
+	compile "org.springframework.data:spring-data-jpa:1.7.1.RELEASE"
+	
+	compile "org.hibernate:hibernate-core:4.3.7.Final"
+	compile "org.hibernate:hibernate-entitymanager:4.3.7.Final"
+	compile "org.hibernate:hibernate-validator:5.0.1.Final"
+	
+	compile "commons-dbcp:commons-dbcp:1.4"
+	compile "cglib:cglib:2.2.2"
+}
